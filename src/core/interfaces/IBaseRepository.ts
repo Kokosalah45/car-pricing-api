@@ -3,9 +3,11 @@ export interface IBaseRepository<T> {
 
   getById(id: number): Promise<T>;
 
-  create(entity: T): Promise<T>;
+  getOneBy(where: Record<string, unknown>);
 
-  update(entity: T): Promise<T>;
+  update(entity: Partial<T>, where: Record<string, unknown>);
 
-  delete(id: number): Promise<T>;
+  delete(where: Record<string, unknown>);
+
+  create(entity: T);
 }
