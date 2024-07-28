@@ -5,25 +5,17 @@ import {
   USER_REPOSITORY_TOKEN,
   UserRepository,
 } from '../repositories/user.repository';
+import { PostgresDataServices } from './postgres-data-services.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'password',
-      database: 'postgres',
-      entities: [User],
-      synchronize: true,
-    }),
-  ],
+  imports: [TypeOrmModule.forFeature([User])],
   providers: [
     {
       provide: USER_REPOSITORY_TOKEN,
       useClass: UserRepository,
     },
+    PostgresDataServices,
   ],
+  exports: [PostgresDataServices],
 })
 export class PostgresModule {}

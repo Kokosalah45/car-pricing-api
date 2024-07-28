@@ -6,10 +6,12 @@ import {
 
 @Injectable()
 export class PostgresDataServices {
-  users: UserRepository;
+  userRepository: UserRepository;
 
   constructor(
     @Inject(USER_REPOSITORY_TOKEN)
-    private userRepository: UserRepository,
-  ) {}
+    userRepository: UserRepository,
+  ) {
+    this.userRepository = userRepository;
+  }
 }
