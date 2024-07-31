@@ -1,16 +1,16 @@
 import { Inject, Injectable } from '@nestjs/common';
 import {
-  USER_REPOSITORY_TOKEN,
-  UserRepository,
-} from '../../repositories/user.repository';
+  USER_TYPEORM_REPOSITORY_TOKEN,
+  UserTypeORMRepository,
+} from '../../repositories/user/user.repository';
 
 @Injectable()
 export class PostgresDataServices {
-  userRepository: UserRepository;
+  userRepository: UserTypeORMRepository;
 
   constructor(
-    @Inject(USER_REPOSITORY_TOKEN)
-    userRepository: UserRepository,
+    @Inject(USER_TYPEORM_REPOSITORY_TOKEN)
+    userRepository: UserTypeORMRepository,
   ) {
     this.userRepository = userRepository;
   }
