@@ -1,7 +1,7 @@
 export interface IBaseRepository<T> {
-  getAll(): Promise<T[]>;
+  getAll();
 
-  getById(id: number): Promise<T>;
+  getById(id: number);
 
   getOneBy(where: Record<string, unknown>);
 

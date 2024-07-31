@@ -2,12 +2,7 @@ import { FindOptionsWhere, Repository } from 'typeorm';
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { IBaseRepository } from '../../../../core/interfaces/IBaseRepository';
 
-interface HasId {
-  id: number;
-}
-export abstract class TypeORMBaseRepository<T extends HasId>
-  implements IBaseRepository<T>
-{
+export abstract class TypeORMBaseRepository<T> implements IBaseRepository<T> {
   constructor(private readonly entity: Repository<T>) {}
 
   update(entity: Partial<T>, where: FindOptionsWhere<T>) {

@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/core/entities/User';
+
+import { BaseUser } from 'src/core/entities/BaseUser';
 import {
   USER_REPOSITORY_TOKEN,
   UserRepository,
-} from '../repositories/user.repository';
+} from '../../repositories/user.repository';
 import { PostgresDataServices } from './postgres-data-services.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([BaseUser])],
   providers: [
     {
       provide: USER_REPOSITORY_TOKEN,
