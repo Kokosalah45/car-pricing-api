@@ -1,4 +1,4 @@
-import { IUser } from './IUser.entity';
+import { IUser } from '../contracts/IUser.entity';
 
 export class BaseUser implements IUser {
   constructor(
@@ -6,9 +6,9 @@ export class BaseUser implements IUser {
     private email: string,
     private password: string,
     private id: string,
-    private createdAt: Date,
-    private updatedAt: Date,
     private roles: string[],
+    private updatedAt?: Date,
+    private createdAt?: Date,
   ) {}
 
   getUserName(): string {
@@ -27,7 +27,7 @@ export class BaseUser implements IUser {
     return this.id;
   }
 
-  getCreatedAt(): Date {
+  getCreatedAt() {
     return this.createdAt;
   }
 

@@ -3,7 +3,7 @@ export interface IUser {
   getEmail(): string;
   getPassword(): string;
   getId(): string;
-  getCreatedAt(): Date;
-  getUpdatedAt(): Date;
+  getCreatedAt(): Date | null;
+  getUpdatedAt(): Date | null;
   getRoles(): string[];
 }
