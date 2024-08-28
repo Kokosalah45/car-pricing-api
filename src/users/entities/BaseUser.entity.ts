@@ -4,12 +4,20 @@ export class BaseUser implements IUser {
   constructor(
     private userName: string,
     private email: string,
+    private firstName: string,
+    private lastName: string,
     private password: string,
     private id: string,
     private roles: string[],
     private updatedAt?: Date,
     private createdAt?: Date,
   ) {}
+  getFirstName(): string {
+    return this.firstName;
+  }
+  getLastName(): string {
+    return this.lastName;
+  }
 
   getUserName(): string {
     return this.userName;
