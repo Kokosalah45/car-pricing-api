@@ -1,14 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { IUserDsGateway } from '../contracts/IUser.data-source';
 import { IUser } from '../contracts/IUser.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { UserDataMapper } from '../userdata.mapper';
 
-@Injectable()
-export class UserTypeORMDsGateway implements IUserDsGateway {
-  constructor(private readonly entity: Repository<UserDataMapper>) {}
+export class InMemoryUserDsGateway implements IUserDsGateway {
+  constructor(private readonly userMap: Map<string, UserDataMapper>) {}
   create(user: CreateUserDto): Promise<IUser> {
     throw new Error('Method not implemented.');
   }

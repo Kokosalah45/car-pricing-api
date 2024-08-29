@@ -5,10 +5,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 })
 export class UserDataMapper {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @Column({
     type: 'varchar2',
+    length: 255,
   })
   firstName: string;
 
@@ -29,4 +30,8 @@ export class UserDataMapper {
 
   @Column()
   createdAt: Date;
+
+  constructor(partial: Partial<UserDataMapper>) {
+    Object.assign(this, partial);
+  }
 }
