@@ -1,14 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserDsGateway } from './contracts/IUser.data-source';
+import { IGenericRepository } from 'src/domain/IGeneric.repository';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { USER_REPOSITORY_TOKEN } from './users.module';
+import { BaseUser } from './entities/BaseUser.entity';
+import { USER_REPO_TOKEN } from './repositories';
 
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject(USER_REPOSITORY_TOKEN)
-    private readonly userDsGateway: IUserDsGateway,
+    @Inject(USER_REPO_TOKEN)
+    private readonly userDsGateway: IGenericRepository<BaseUser>,
   ) {}
   create(createUserDto: CreateUserDto) {}
 

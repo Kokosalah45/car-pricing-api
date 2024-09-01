@@ -1,9 +1,10 @@
+import { BaseEntity } from 'src/domain/BaseEntity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({
   name: 'users',
 })
-export class UserDataMapper {
+export class UserDataMapper implements BaseEntity {
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -33,5 +34,8 @@ export class UserDataMapper {
 
   constructor(partial: Partial<UserDataMapper>) {
     Object.assign(this, partial);
+  }
+  getID() {
+    return this.id;
   }
 }

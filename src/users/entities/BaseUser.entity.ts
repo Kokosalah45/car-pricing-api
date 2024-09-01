@@ -7,7 +7,7 @@ export class BaseUser implements IUser {
     private firstName: string,
     private lastName: string,
     private password: string,
-    private id: string,
+    public id: string,
     private roles: string[],
     private updatedAt?: Date,
     private createdAt?: Date,
@@ -31,7 +31,7 @@ export class BaseUser implements IUser {
     return this.password;
   }
 
-  getId(): string {
+  getID(): string {
     return this.id;
   }
 

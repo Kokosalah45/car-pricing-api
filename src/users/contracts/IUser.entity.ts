@@ -4,7 +4,7 @@ export interface IUser {
   getFirstName(): string;
   getLastName(): string;
   getPassword(): string;
-  getId(): string;
+  getID(): string;
   getCreatedAt(): Date | null;
   getUpdatedAt(): Date | null;
   getRoles(): string[];
