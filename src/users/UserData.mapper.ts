@@ -1,10 +1,13 @@
-import { BaseEntity } from 'src/domain/BaseEntity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { IUser } from './contracts/IUser.entity';
 
 @Entity({
   name: 'users',
 })
-export class UserDataMapper implements BaseEntity {
+export class UserDataMapper implements IUser {
+  constructor(partial: Partial<UserDataMapper>) {
+    Object.assign(this, partial);
+  }
   @PrimaryGeneratedColumn()
   id: string;
 
@@ -12,28 +15,46 @@ export class UserDataMapper implements BaseEntity {
     type: 'varchar2',
     length: 255,
   })
-  firstName: string;
+  private firstName: string;
 
   @Column()
-  lastName: string;
+  private lastName: string;
 
   @Column()
-  userName: string;
+  private userName: string;
 
   @Column()
-  email: string;
+  private email: string;
 
   @Column()
-  password: string;
+  private password: string;
 
   @Column()
-  updatedAt: Date;
+  private updatedAt?: Date;
 
   @Column()
-  createdAt: Date;
+  private createdAt?: Date;
 
-  constructor(partial: Partial<UserDataMapper>) {
-    Object.assign(this, partial);
+  getUserName(): string {
+    return this.userName;
+  }
+  getEmail(): string {
+    return this.email;
+  }
+  getFirstName(): string {
+    return this.firstName;
+  }
+  getLastName(): string {
+    return this.lastName;
+  }
+  getPassword(): string {
+    return this.password;
+  }
+  getCreatedAt(): Date | null {
+    return this.createdAt;
+  }
+  getUpdatedAt(): Date | null {
+    return this.updatedAt;
   }
   getID() {
     return this.id;

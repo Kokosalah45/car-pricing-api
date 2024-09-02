@@ -2,48 +2,37 @@ import { IUser } from '../contracts/IUser.entity';
 
 export class BaseUser implements IUser {
   constructor(
+    public id: string,
     private userName: string,
     private email: string,
     private firstName: string,
     private lastName: string,
     private password: string,
-    public id: string,
-    private roles: string[],
     private updatedAt?: Date,
     private createdAt?: Date,
   ) {}
+  getUserName(): string {
+    return this.userName;
+  }
+  getEmail(): string {
+    return this.email;
+  }
   getFirstName(): string {
     return this.firstName;
   }
   getLastName(): string {
     return this.lastName;
   }
-
-  getUserName(): string {
-    return this.userName;
-  }
-
-  getEmail(): string {
-    return this.email;
-  }
-
   getPassword(): string {
     return this.password;
   }
-
-  getID(): string {
-    return this.id;
-  }
-
-  getCreatedAt() {
+  getCreatedAt(): Date | null {
     return this.createdAt;
   }
-
-  getUpdatedAt(): Date {
+  getUpdatedAt(): Date | null {
     return this.updatedAt;
   }
-
-  getRoles(): string[] {
-    return this.roles;
+  getID() {
+    return this.id;
   }
 }

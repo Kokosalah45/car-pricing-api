@@ -2,10 +2,11 @@ import { Inject } from '@nestjs/common';
 import { TypeORMDsGateway } from 'src/domain/TypeORM.data-source';
 import { Repository } from 'typeorm';
 import { USER_REPO_TOKEN } from '.';
-import { BaseUser } from '../entities/BaseUser.entity';
+import { IUser } from '../contracts/IUser.entity';
+import { UserDataMapper } from '../UserData.mapper';
 
-export class UserTypeORMRepository extends TypeORMDsGateway<BaseUser> {
-  constructor(@Inject(USER_REPO_TOKEN) userRepo: Repository<BaseUser>) {
+export class UserTypeORMRepository extends TypeORMDsGateway<IUser> {
+  constructor(@Inject(USER_REPO_TOKEN) userRepo: Repository<UserDataMapper>) {
     super(userRepo);
   }
 }

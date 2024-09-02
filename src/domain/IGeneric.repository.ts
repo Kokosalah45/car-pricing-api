@@ -1,4 +1,4 @@
-import { BaseEntity } from './IBase';
+import { BaseEntity } from './BaseEntity';
 
 export interface IGenericRepository<T extends BaseEntity> {
   create(entity: T): Promise<T>;

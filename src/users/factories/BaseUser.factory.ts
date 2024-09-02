@@ -6,20 +6,20 @@ export class BaseUserFactory implements IUserFactory {
   create(
     id: string,
     userName: string,
+    firstName: string,
+    lastName: string,
     email: string,
     password: string,
-    roles: string[],
     createdAt?: Date,
     updatedAt?: Date,
   ): IUser {
     return new BaseUser(
       userName,
       email,
-      '',
-      '',
+      firstName,
+      lastName,
       password,
       id,
-      roles,
       updatedAt,
       createdAt,
     );
