@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { TypeORMDsGateway } from 'src/domain/TypeORM.data-source';
+import { TypeORMDsGateway } from 'src/infrastructure/data/typeorm/TypeORM.data-source';
 import { Repository } from 'typeorm';
 import { USER_REPO_TOKEN } from '.';
 import { IUser } from '../contracts/IUser.entity';

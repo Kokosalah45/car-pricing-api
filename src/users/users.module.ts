@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IGenericRepository } from 'src/domain/IGeneric.repository';
-import { TypeORMDsGateway } from '../domain/TypeORM.data-source';
-import { BaseUser } from './entities/BaseUser.entity';
+import { IGenericDataSource } from 'src/domain/IGeneric.data-source';
+import { TypeORMDsGateway } from 'src/infrastructure/data/typeorm/TypeORM.data-source';
+import { IUser } from './contracts/IUser.entity';
 import { USER_REPO_TOKEN, UserTypeORMRepository } from './repositories';
 import { UserDataMapper } from './UserData.mapper';
 import { UsersController } from './users.controller';
@@ -19,7 +19,7 @@ import { UsersService } from './users.service';
       useFactory: async (
         UserTypeORMRepository: UserTypeORMRepository,
         config: ConfigService,
-      ): Promise<IGenericRepository<BaseUser>> => {
+      ): Promise<IGenericDataSource<IUser>> => {
         const dataSource = config.get<string>('DATA_SOURCE');
 
         switch (dataSource) {

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { BaseEntity } from 'src/domain/BaseEntity';
-import { IGenericRepository } from 'src/domain/IGeneric.repository';
+import { IGenericDataSource } from 'src/domain/IGeneric.data-source';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class TypeORMDsGateway<T extends BaseEntity>
-  implements IGenericRepository<T>
+export abstract class TypeORMDsGateway<T extends BaseEntity>
+  implements IGenericDataSource<T>
 {
   constructor(private readonly entity: Repository<T>) {}
   async create(entity: T): Promise<T> {
