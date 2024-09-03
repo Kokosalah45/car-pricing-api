@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { BaseEntity } from 'src/domain/BaseEntity';
-import { IGenericDataSource } from 'src/domain/IGeneric.data-source';
+import { BaseEntity } from 'src/domain/abstractions/BaseEntity';
+import { IGenericDataSource } from 'src/domain/interfaces/IGeneric.data-source';
 import { Repository } from 'typeorm';
 
 @Injectable()
@@ -10,6 +10,7 @@ export abstract class TypeORMDsGateway<T extends BaseEntity>
   constructor(private readonly entity: Repository<T>) {}
   async create(entity: T): Promise<T> {
     const newEntity = this.entity.create(entity);
+
     return this.entity.save(newEntity);
   }
   async findById(id: any): Promise<T> {
@@ -19,9 +20,9 @@ export abstract class TypeORMDsGateway<T extends BaseEntity>
     return entity;
   }
 
-  async update(entity: T): Promise<T> {
+  async update(id: any, entity: T): Promise<T> {
     const entityToUpdate = await this.entity.findOneByOrFail({
-      id: entity.id,
+      id,
     });
 
     const mergedUser = this.entity.merge(entityToUpdate, entity);

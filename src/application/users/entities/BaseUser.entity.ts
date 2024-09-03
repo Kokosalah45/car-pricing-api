@@ -2,7 +2,6 @@ import { IUser } from '../contracts/IUser.entity';
 
 export class BaseUser implements IUser {
   constructor(
-    public id: string,
     private userName: string,
     private email: string,
     private firstName: string,
@@ -10,6 +9,7 @@ export class BaseUser implements IUser {
     private password: string,
     private updatedAt?: Date,
     private createdAt?: Date,
+    public id?: number,
   ) {}
   getUserName(): string {
     return this.userName;

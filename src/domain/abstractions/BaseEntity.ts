@@ -1,5 +1,5 @@
 export abstract class BaseEntity {
-  id: any;
+  id?: any;
   getID() {
     return this.id;
   }

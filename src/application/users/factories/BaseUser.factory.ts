@@ -1,10 +1,11 @@
+import { Injectable } from '@nestjs/common';
 import { IUser } from '../contracts/IUser.entity';
 import { IUserFactory } from '../contracts/IUser.factory';
 import { BaseUser } from '../entities/BaseUser.entity';
 
+@Injectable()
 export class BaseUserFactory implements IUserFactory {
   create(
-    id: string,
     userName: string,
     firstName: string,
     lastName: string,
@@ -12,16 +13,17 @@ export class BaseUserFactory implements IUserFactory {
     password: string,
     createdAt?: Date,
     updatedAt?: Date,
+    id?: number,
   ): IUser {
     return new BaseUser(
       userName,
-      email,
       firstName,
       lastName,
+      email,
       password,
-      id,
       updatedAt,
       createdAt,
+      id,
     );
   }
 }

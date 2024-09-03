@@ -4,35 +4,53 @@ import { IUser } from './contracts/IUser.entity';
 @Entity({
   name: 'users',
 })
-export class UserDataMapper implements IUser {
-  constructor(partial: Partial<UserDataMapper>) {
+export class UserTypeORMMapper implements IUser {
+  constructor(partial: Partial<UserTypeORMMapper>) {
     Object.assign(this, partial);
   }
   @PrimaryGeneratedColumn()
-  id: string;
+  id?: number;
 
   @Column({
-    type: 'varchar2',
+    type: 'varchar',
     length: 255,
   })
   private firstName: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
   private lastName: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
   private userName: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
   private email: string;
 
-  @Column()
+  @Column({
+    type: 'varchar',
+    length: 255,
+  })
   private password: string;
 
-  @Column()
+  @Column({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   private updatedAt?: Date;
 
-  @Column()
+  @Column({
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   private createdAt?: Date;
 
   getUserName(): string {

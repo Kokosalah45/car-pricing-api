@@ -1,8 +1,7 @@
 import { IUser } from './IUser.entity';
 
-export interface IUserFactory {
-  create(
-    id: string,
+export abstract class IUserFactory {
+  abstract create(
     userName: string,
     firstName: string,
     lastName: string,
@@ -10,5 +9,6 @@ export interface IUserFactory {
     password: string,
     createdAt?: Date,
     updatedAt?: Date,
+    id?: number,
   ): IUser;
 }
