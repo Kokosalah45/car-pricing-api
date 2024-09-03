@@ -1,15 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import mongoose, { HydratedDocument } from 'mongoose';
+import { HydratedDocument } from 'mongoose';
 import { IUser } from './contracts/IUser.entity';
 export type UserDocument = HydratedDocument<UserMongoMapper>;
 
 @Schema()
 export class UserMongoMapper implements IUser {
-  @Prop({
-    type: mongoose.Schema.Types.ObjectId,
-    required: false,
-  })
-  _id?: any;
   @Prop({
     type: String,
     required: true,
@@ -67,9 +62,7 @@ export class UserMongoMapper implements IUser {
   getUpdatedAt(): Date | null {
     return this.updatedAt;
   }
-  getID() {
-    return this._id;
-  }
+  getID() {}
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserMongoMapper);

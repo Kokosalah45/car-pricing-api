@@ -12,7 +12,11 @@ export abstract class MongooseORMGateway<T extends BaseEntity>
   ) {}
   async create(entity: T): Promise<T> {
     const newEntity = new this.entity(entity);
-    return newEntity.save();
+
+    return {
+      ...(await newEntity.save()),
+      id: newEntity._id,
+    };
   }
   async findById(id: string): Promise<T> {
     const entity = await this.entity
@@ -21,6 +25,7 @@ export abstract class MongooseORMGateway<T extends BaseEntity>
       .exec();
     return entity;
   }
+
   async update(id: string, entity: T): Promise<T> {
     const entityToUpdate = await this.entity.findByIdAndUpdate(id, entity);
     return entityToUpdate;
@@ -29,7 +34,17 @@ export abstract class MongooseORMGateway<T extends BaseEntity>
     await this.entity.findByIdAndDelete(id);
   }
   async list(): Promise<T[]> {
-    return this.entity.find().populate(this.populateOnFind).exec();
+    const entities = await this.entity
+      .find()
+      .populate(this.populateOnFind)
+      .exec();
+    console.log({ entities });
+    return entities.map((entity) => {
+      return {
+        ...entity,
+        id: entity._id,
+      };
+    });
   }
   async count(): Promise<number> {
     return this.entity.countDocuments();

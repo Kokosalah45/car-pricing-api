@@ -23,7 +23,7 @@ import { UsersModule } from './application/users/users.module';
       synchronize: true,
     }),
 
-    MongooseModule.forRoot('mongodb://localhost:8081'),
+    MongooseModule.forRoot('mongodb://127.0.0.1:8001/test'),
   ],
   controllers: [AppController],
   providers: [AppService],

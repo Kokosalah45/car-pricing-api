@@ -24,8 +24,10 @@ export class UsersService {
     return this.userDsGateway.create(user);
   }
 
-  findAll() {
-    return this.userDsGateway.list();
+  async findAll() {
+    const list = await this.userDsGateway.list();
+
+    return list;
   }
 
   findOne(id: number) {
