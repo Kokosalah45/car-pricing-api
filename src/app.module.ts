@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -17,13 +16,12 @@ import { UsersModule } from './application/users/users.module';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      password: '123',
+      password: 'postgres',
       username: 'postgres',
       entities: [UserTypeORMMapper],
-      synchronize: true,
     }),
 
-    MongooseModule.forRoot('mongodb://127.0.0.1:8001/test'),
+    // MongooseModule.forRoot('mongodb://127.0.0.1:8001/test'),
   ],
   controllers: [AppController],
   providers: [AppService],

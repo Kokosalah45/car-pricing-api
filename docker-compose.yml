@@ -1,0 +1,57 @@
+services:
+  backend:
+    image: destro455/car-pricing-api
+    ports:
+      - '8000:8000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - MONGO_URL=mongodb://root:root@mongodb:27017/admin
+      - DATA_SOURCE=postgres
+
+    networks:
+      - my_network
+
+  postgres:
+    image: postgres:14
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./db-data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - my_network
+
+  # mongodb:
+  #   image: mongo:latest
+  #   ports:
+  #     - '27017:27017'
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: root
+  #     MONGO_INITDB_ROOT_PASSWORD: root
+  #     MONGO_INITDB_DATABASE: admin
+  #   volumes:
+  #     - ./db-data/mongodb:/data/db
+  #   profiles: [mongodb]
+  #   networks:
+  #     - my_network
+
+volumes:
+  postgres:
+  mongodb:
+
+networks:
+  my_network:
+    driver: bridge
