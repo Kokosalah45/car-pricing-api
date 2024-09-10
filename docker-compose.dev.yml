@@ -1,0 +1,59 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+    ports:
+      - '8000:3000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+    environment:
+      - DATA_SOURCE=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=123
+      - DATABASE_NAME=car_pricing
+      - DATABASE_PORT=5432
+      - DATABASE_HOST=postgres
+    networks:
+      - my_network
+
+  postgres:
+    image: postgres:14
+    container_name: postgres-car-pricing
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_NAME=car_pricing
+
+    volumes:
+      - ./db-data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - my_network
+
+volumes:
+  postgres:
+
+networks:
+  my_network:
+    driver: bridge

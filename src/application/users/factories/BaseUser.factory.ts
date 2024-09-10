@@ -1,9 +1,7 @@
-import { Injectable } from '@nestjs/common';
 import { IUser } from '../contracts/IUser.entity';
 import { IUserFactory } from '../contracts/IUser.factory';
 import { BaseUser } from '../entities/BaseUser.entity';
 
-@Injectable()
 export class BaseUserFactory implements IUserFactory {
   create(
     userName: string,

@@ -1,24 +1,21 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserTypeORMMapper } from './application/users/UserData.TypeORM-mapper';
 import { UsersModule } from './application/users/users.module';
+import typeorm from './infrastructure/data/typeorm/config';
 
 @Module({
   imports: [
     UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [typeorm],
     }),
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      password: 'postgres',
-      username: 'postgres',
-      entities: [UserTypeORMMapper],
+    TypeOrmModule.forRootAsync({
+      useFactory: async (configService) => configService.get('typeorm'),
+      inject: [ConfigService],
     }),
 
     // MongooseModule.forRoot('mongodb://127.0.0.1:8001/test'),

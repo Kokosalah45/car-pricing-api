@@ -1,7 +1,7 @@
 import { IUser } from './IUser.entity';
 
-export abstract class IUserFactory {
-  abstract create(
+export interface IUserFactory {
+  create(
     userName: string,
     firstName: string,
     lastName: string,
@@ -12,3 +12,5 @@ export abstract class IUserFactory {
     id?: number,
   ): IUser;
 }
+
+export const USER_FACTORY_TOKEN = 'USER_FACTORY_TOKEN';

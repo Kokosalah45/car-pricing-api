@@ -1,4 +1,4 @@
-import { BaseEntity } from '../abstractions/BaseEntity';
+import { BaseEntity } from '../entities/BaseEntity';
 
 export interface IGenericDataSource<T extends BaseEntity> {
   create(entity: T): Promise<T>;

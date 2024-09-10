@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { BaseEntity } from 'src/domain/abstractions/BaseEntity';
-import { IGenericDataSource } from 'src/domain/interfaces/IGeneric.data-source';
 import { Repository } from 'typeorm';
+import { BaseEntity } from '../../../domain/entities/BaseEntity';
+import { IGenericDataSource } from '../../../domain/interfaces/IGeneric.data-source';
 
+// input boundary UserDataMapper
+// output boundary UserDataMapper
 @Injectable()
 export abstract class TypeORMDsGateway<T extends BaseEntity>
   implements IGenericDataSource<T>
@@ -10,7 +12,6 @@ export abstract class TypeORMDsGateway<T extends BaseEntity>
   constructor(private readonly entity: Repository<T>) {}
   async create(entity: T): Promise<T> {
     const newEntity = this.entity.create(entity);
-
     return this.entity.save(newEntity);
   }
   async findById(id: any): Promise<T> {

@@ -1,0 +1,24 @@
+
+FROM node:20-alpine3.17 AS deps
+
+ENV NODE_ENV=development
+
+RUN npm install -g pnpm 
+
+WORKDIR /app
+
+COPY package.json  pnpm-lock.yaml /app/
+
+RUN pnpm install --frozen-lockfile
+RUN apk add --no-cache postgresql-client 
+
+COPY . /app/
+
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+
+

@@ -1,4 +1,4 @@
-import { BaseEntity } from 'src/domain/abstractions/BaseEntity';
+import { BaseEntity } from '../../../domain/entities/BaseEntity';
 
 export interface IUser extends BaseEntity {
   getUserName(): string;

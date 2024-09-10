@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IGenericDataSource } from 'src/domain/interfaces/IGeneric.data-source';
+import { IGenericDataSource } from '../../domain/interfaces/IGeneric.data-source';
 import { IUser } from './contracts/IUser.entity';
-import { IUserFactory } from './contracts/IUser.factory';
+import { IUserFactory, USER_FACTORY_TOKEN } from './contracts/IUser.factory';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { USER_REPO_TOKEN } from './repositories';
@@ -11,6 +11,7 @@ export class UsersService {
   constructor(
     @Inject(USER_REPO_TOKEN)
     private readonly userDsGateway: IGenericDataSource<IUser>,
+    @Inject(USER_FACTORY_TOKEN)
     private readonly userFactory: IUserFactory,
   ) {}
   create(createUserDto: CreateUserDto) {
@@ -21,12 +22,12 @@ export class UsersService {
       createUserDto.email,
       createUserDto.password,
     );
+
     return this.userDsGateway.create(user);
   }
 
   async findAll() {
     const list = await this.userDsGateway.list();
-
     return list;
   }
 
