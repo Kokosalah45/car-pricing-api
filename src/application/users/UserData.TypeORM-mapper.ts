@@ -1,8 +1,8 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IUser } from './contracts/IUser.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IUser } from "./contracts/IUser.entity";
 
 @Entity({
-  name: 'users',
+  name: "users",
 })
 export class UserTypeORMMapper implements IUser {
   constructor(partial: Partial<UserTypeORMMapper>) {
@@ -12,51 +12,51 @@ export class UserTypeORMMapper implements IUser {
   id?: number;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 255,
-    name: 'first_name',
+    name: "first_name",
   })
   private firstName: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 255,
-    name: 'last_name',
+    name: "last_name",
   })
   private lastName: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 255,
-    name: 'username',
+    name: "username",
   })
   private userName: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 255,
-    name: 'email',
+    name: "email",
   })
   private email: string;
 
   @Column({
-    type: 'varchar',
+    type: "varchar",
     length: 255,
-    name: 'password',
+    name: "password",
   })
   private password: string;
 
   @Column({
-    type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'updated_at',
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    name: "updated_at",
   })
   private updatedAt?: Date;
 
   @Column({
-    type: 'timestamptz',
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'created_at',
+    type: "timestamptz",
+    default: () => "CURRENT_TIMESTAMP",
+    name: "created_at",
   })
   private createdAt?: Date;
 

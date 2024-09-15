@@ -1,4 +1,4 @@
-import { IUser } from '../contracts/IUser.entity';
+import { IUser } from "../contracts/IUser.entity";
 
 export class BaseUser implements IUser {
   constructor(

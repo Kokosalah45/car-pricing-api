@@ -1,4 +1,4 @@
-import { IBaseEntity } from '../entities/IBase.entity';
+import { IBaseEntity } from "../entities/IBase.entity";
 
 export interface IBaseRepository<T extends IBaseEntity> {
   create(entity: T): Promise<T>;

@@ -1,4 +1,4 @@
-import { IUser } from './IUser.entity';
+import { IUser } from "./IUser.entity";
 
 export interface IUserFactory {
   create(
@@ -13,4 +13,4 @@ export interface IUserFactory {
   ): IUser;
 }
 
-export const USER_FACTORY_TOKEN = 'USER_FACTORY_TOKEN';
+export const USER_FACTORY_TOKEN = "USER_FACTORY_TOKEN";

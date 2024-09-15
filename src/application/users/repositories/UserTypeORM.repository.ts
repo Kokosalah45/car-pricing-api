@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { TypeORMDsGateway } from '../../../infrastructure/data/typeorm/TypeORM.data-source';
-import { IUser } from '../contracts/IUser.entity';
-import { UserTypeORMMapper } from '../UserData.TypeORM-mapper';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { TypeORMDsGateway } from "../../../infrastructure/data/typeorm/TypeORM.data-source";
+import { IUser } from "../contracts/IUser.entity";
+import { UserTypeORMMapper } from "../UserData.TypeORM-mapper";
 
 @Injectable()
 export class UserTypeORMRepository extends TypeORMDsGateway<IUser> {
