@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { BaseEntity } from '../../../domain/entities/BaseEntity';
-import { IGenericDataSource } from '../../../domain/interfaces/IGeneric.data-source';
+import { BaseEntity } from '../../../domain/entities/IBase.entity';
+import { IGenericDataSource } from '../../../domain/repositories/IBase.repository';
 @Injectable()
 export abstract class MongooseORMGateway<T extends BaseEntity>
   implements IGenericDataSource<T>

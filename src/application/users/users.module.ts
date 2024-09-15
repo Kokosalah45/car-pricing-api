@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { IGenericDataSource } from '../../domain/interfaces/IGeneric.data-source';
+import { IGenericDataSource } from '../../domain/repositories/IBase.repository';
 import { IUser } from './contracts/IUser.entity';
 import { USER_FACTORY_TOKEN } from './contracts/IUser.factory';
 import { BaseUserFactory } from './factories/BaseUser.factory';

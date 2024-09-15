@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IGenericDataSource } from '../../domain/interfaces/IGeneric.data-source';
+import { IGenericDataSource } from '../../domain/repositories/IBase.repository';
 import { IUser } from './contracts/IUser.entity';
 import { IUserFactory, USER_FACTORY_TOKEN } from './contracts/IUser.factory';
 import { CreateUserDto } from './dto/create-user.dto';

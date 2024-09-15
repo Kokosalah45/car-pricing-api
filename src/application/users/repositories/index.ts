@@ -1,4 +1,4 @@
-import { IGenericDataSource } from '../../../domain/interfaces/IGeneric.data-source';
+import { IGenericDataSource } from '../../../domain/repositories/IBase.repository';
 import { IUser } from '../contracts/IUser.entity';
 
 export interface IUserRepository extends IGenericDataSource<IUser> {

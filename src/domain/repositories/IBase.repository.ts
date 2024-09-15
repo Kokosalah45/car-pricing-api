@@ -1,6 +1,6 @@
-import { BaseEntity } from '../entities/BaseEntity';
+import { IBaseEntity } from '../entities/IBase.entity';
 
-export interface IGenericDataSource<T extends BaseEntity> {
+export interface IBaseRepository<T extends IBaseEntity> {
   create(entity: T): Promise<T>;
   findById(id: string): Promise<T>;
   update(id: string, entity: T): Promise<T>;
