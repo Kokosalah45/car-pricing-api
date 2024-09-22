@@ -1,6 +1,6 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument } from "mongoose";
-import { IUser } from "./contracts/IUser.entity";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
+import { IUser } from '../../../../../domain/interfaces/entities/IUser.entity';
 export type UserDocument = HydratedDocument<UserMongoMapper>;
 
 @Schema()

@@ -1,4 +1,4 @@
-import { IBaseEntity } from "./IBase.entity";
+import { IBaseEntity } from './IBase.entity';
 
 export interface IUser extends IBaseEntity {
   getUserName(): string;

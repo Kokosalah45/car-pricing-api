@@ -1,24 +1,19 @@
-import { Module } from "@nestjs/common";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
-import { UsersModule } from "./application/users/users.module";
-import typeorm from "./infrastructure/data/typeorm/config";
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './application/users/users.module';
+import typeormConfig from './infrastructure/data/typeorm/typeorm.config';
+import { TypeOrmModuleConnection } from './infrastructure/data/typeorm/typeorm.module';
 
 @Module({
   imports: [
+    TypeOrmModuleConnection,
     UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [typeorm],
+      load: [typeormConfig],
     }),
-    TypeOrmModule.forRootAsync({
-      useFactory: async (configService) => configService.get("typeorm"),
-      inject: [ConfigService],
-    }),
-
-    // MongooseModule.forRoot('mongodb://127.0.0.1:8001/test'),
   ],
   controllers: [AppController],
   providers: [AppService],

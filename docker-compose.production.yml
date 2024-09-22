@@ -3,7 +3,7 @@ services:
     image: destro455/car-pricing-api
     container_name: car-pricing-api
     ports:
-      - "8000:3000"
+      - '8000:3000'
     depends_on:
       postgres:
         condition: service_healthy
@@ -22,7 +22,7 @@ services:
     image: postgres:14
     container_name: postgres-car-pricing
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=123
@@ -31,7 +31,7 @@ services:
     volumes:
       - ./db-data/postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 10s
       timeout: 5s
       retries: 5
