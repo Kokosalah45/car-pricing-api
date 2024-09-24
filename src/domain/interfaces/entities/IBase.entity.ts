@@ -1,5 +1,9 @@
 export abstract class IBaseEntity {
-  id?: any;
+  private id?: string;
+
+  constructor(id?: string) {
+    this.id = id;
+  }
   getID() {
     return this.id;
   }

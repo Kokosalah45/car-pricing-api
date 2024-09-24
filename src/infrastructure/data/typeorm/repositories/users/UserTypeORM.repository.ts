@@ -17,22 +17,42 @@ export class UserTypeORMRepository implements IUserRepository {
   someNewMethodToAccessUserRepo(): Promise<string> {
     throw new Error('Method not implemented.');
   }
-  create(entity: IUser): Promise<IUser> {
-    throw new Error('Method not implemented.');
+  async create(entity: IUser): Promise<IUser> {
+    const userMapper = new UserTypeORMMapper(
+      entity.getFirstName(),
+      entity.getLastName(),
+      entity.getUserName(),
+      entity.getEmail(),
+      entity.getPassword(),
+    );
+
+    return await this.userRepo.save(userMapper);
   }
-  findById(id: string): Promise<IUser> {
-    throw new Error('Method not implemented.');
+  findById(id: string) {
+    return this.userRepo.findOne({
+      where: {
+        id,
+      },
+    });
   }
-  update(id: string, entity: IUser): Promise<IUser> {
-    throw new Error('Method not implemented.');
+  async update(id: string, entity: IUser): Promise<void> {
+    const userMapper = new UserTypeORMMapper(
+      entity.getFirstName(),
+      entity.getLastName(),
+      entity.getUserName(),
+      entity.getEmail(),
+      entity.getPassword(),
+    );
+
+    await this.userRepo.update(id, userMapper);
   }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(id: string): Promise<void> {
+    this.userRepo.delete(id);
   }
   list(): Promise<IUser[]> {
-    throw new Error('Method not implemented.');
+    return this.userRepo.find();
   }
   count(): Promise<number> {
-    throw new Error('Method not implemented.');
+    return this.userRepo.count();
   }
 }

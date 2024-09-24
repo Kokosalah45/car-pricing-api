@@ -1,15 +1,24 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { IUser } from '../../../../../domain/interfaces/entities/IUser.entity';
 
 @Entity({
   name: 'users',
 })
-export class UserTypeORMMapper implements IUser {
-  constructor(partial: Partial<UserTypeORMMapper>) {
-    Object.assign(this, partial);
+export class UserTypeORMMapper {
+  constructor(
+    firstName: string,
+    lastName: string,
+    userName: string,
+    email: string,
+    password: string,
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.userName = userName;
+    this.email = email;
+    this.password = password;
   }
   @PrimaryGeneratedColumn()
-  id?: number;
+  id: string;
 
   @Column({
     type: 'varchar',
@@ -60,6 +69,10 @@ export class UserTypeORMMapper implements IUser {
   })
   private createdAt?: Date;
 
+  getID() {
+    return this.id;
+  }
+
   getUserName(): string {
     return this.userName;
   }
@@ -75,13 +88,11 @@ export class UserTypeORMMapper implements IUser {
   getPassword(): string {
     return this.password;
   }
+
   getCreatedAt(): Date | null {
     return this.createdAt;
   }
   getUpdatedAt(): Date | null {
     return this.updatedAt;
-  }
-  getID() {
-    return this.id;
   }
 }

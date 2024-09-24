@@ -1,16 +1,17 @@
-import { IUser } from '../interfaces/entities/IUser.entity';
-
-export class BaseUser implements IUser {
+export class BaseUser {
   constructor(
     private userName: string,
     private email: string,
     private firstName: string,
     private lastName: string,
     private password: string,
+    private id?: string,
     private updatedAt?: Date,
     private createdAt?: Date,
-    public id?: number,
   ) {}
+  getID(): string {
+    return this.id;
+  }
   getUserName(): string {
     return this.userName;
   }
@@ -31,8 +32,5 @@ export class BaseUser implements IUser {
   }
   getUpdatedAt(): Date | null {
     return this.updatedAt;
-  }
-  getID() {
-    return this.id;
   }
 }
